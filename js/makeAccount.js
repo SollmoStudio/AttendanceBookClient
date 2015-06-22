@@ -11,7 +11,7 @@ $(function(){
         password: password
       },
       success: function(data) {
-        alert('성공' + JSON.stringify(data));
+        alert('가입 성공');
         location.href = "login.html";
       },
       error: function(data) {

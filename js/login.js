@@ -11,8 +11,11 @@ $(function(){
         password: password
       },
       success: function(data) {
-        alert('성공' + JSON.stringify(data));
-        location.href = "attendance.html";
+        if (data.status === "ok") {
+          location.href = "attendance.html";
+        } else {
+          alert('잘못된 아이디 혹은 패스워드');
+        }
       },
       error: function(data) {
         alert('에러' + JSON.stringify(data));
