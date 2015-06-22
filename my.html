@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom css for this page -->
+    <link href="css/common.css" rel="stylesheet">
+    <script src="js/jquery-1.11.3.min.js"></script>
+  </head>
+  <body>
+
+    <!--Attach imported header contents -->
+    <script type="text/javascript">
+      $.get('header.html', function(data) {
+        $('body').append(data);
+      });
+    </script>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/moment.js"></script>
+    <script src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

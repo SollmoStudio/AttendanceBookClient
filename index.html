@@ -6,54 +6,52 @@
     <link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom css for this page -->
     <link href="css/common.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <script src="js/jquery-1.11.3.min.js"></script>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">BuddyRush</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">출근</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>버디러시! 카이얀테크 계약!</h1>
+            <p>아 이제 만들기 귀찮아지고 있어 .. </p>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-lg-4">
+              <h2>신재훈 사춘기인가..</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-xs-6 col-lg-4">
+              <h2>최태훈 성에 눈을 뜨다 :)</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
 
-		<div class="container" id="login_container">
-			<h2 class="form-signin-heading">로그인 하기</h2>
-			<form id="login_form">
-			  <div class="form-group">
-			    <label for="email">이메일 주소</label>
-			    <input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력하세요">
-			  </div>
-			  <div class="form-group">
-			    <label for="password">암호</label>
-			    <input type="password" class="form-control" name="password" id="password" placeholder="암호">
-			  </div>
-			  <div class="checkbox">
-			    <label>
-			      <input type="checkbox"> 입력을 기억합니다
-			    </label>
-			  </div>
-			  <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-			</form>
-		</div>
+      <hr>
+
+      <footer>
+        <p>&copy; Buddyrush 2015</p>
+      </footer>
+
+    </div><!--/.container-->
+
+    <!--Attach imported header contents -->
+    <script type="text/javascript">
+      $.get('header.html', function(data) {
+        $('body').append(data);
+      });
+    </script>
 
 		<!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/moment.js"></script>
     <script src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
-    <script src="js/login.js"></script>
 	</body>
 </html>

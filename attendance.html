@@ -7,32 +7,9 @@
     <!-- Custom css for this page -->
     <link href="css/common.css" rel="stylesheet">
     <link href="css/attendance.css" rel="stylesheet">
+    <script src="js/jquery-1.11.3.min.js"></script>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">BuddyRush</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">출근</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
 		<div class="container" id="attendance_container">
 			<h2 class="form-signin-heading">출근 체크 하기</h2>
       <p>현재 시각 : <span id="current_time"></span></p>
@@ -58,9 +35,15 @@
         </div>
       </div>
 		</div>
+    
+    <!--Attach imported header contents -->
+    <script type="text/javascript">
+      $.get('header.html', function(data) {
+        $('body').append(data);
+      });
+    </script>
 
 		<!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/underscore-min.js"></script>
     <script src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
