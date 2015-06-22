@@ -21,7 +21,24 @@ $(function() {
     addRewardEvent();
 
     $('#attend_button').click(function() {
-      alert("지각은 마음의 병!:<");
+        $.ajax({
+          type: "POST",
+          url: '/attend',
+          data: {},
+          success: function(data) {
+            if(data.status === "ok") {
+              alert('지각은 마음의 병 출첵 완료!!');
+              $('#attend_button').attr('disabled', 'disabled');
+            } else {
+              alert('에러' + JSON.stringify(data));
+            }
+          },
+          error: function(data) {
+            alert('서버 에러' + JSON.stringify(data));
+            location.href = "error.html";
+          },
+          dataType: 'json'
+        });
     });
 
     $('#go_before_month_button').click(function() {
