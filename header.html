@@ -41,7 +41,7 @@
 
   function makeHeaderMenu(isLogin) {
     if (isLogin) {
-      var left_target = $('navbar_left');
+      var left_target = $('#navbar_left');
       $('<li id="nav_attendance_page_button"><a href="attendance.html">출근 도장</a></li>' +
         '<li id="nav_rank_page_button"><a href="rank.html">근태 랭킹</a></li>' +
         '<li id="nav_my_page_button"><a href="my.html">내 근태 현황</a></li>' +
@@ -50,7 +50,7 @@
         '<li id="nav_account_page_button"><a href="account.html">계정관리</a></li>').appendTo(left_target);
     }
 
-    var right_target = $('navbar_right');
+    var right_target = $('#navbar_right');
     if (isLogin) {
       $('<li id="nav_login_page_button"><a href="login.html">Login</a></li>').appendTo(right_target);
     }
