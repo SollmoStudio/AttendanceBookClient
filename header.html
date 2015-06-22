@@ -52,10 +52,10 @@
 
     var right_target = $('#navbar_right');
     if (isLogin) {
-      $('<li id="nav_login_page_button"><a href="login.html">Login</a></li>').appendTo(right_target);
+      $('<li id="nav_logout_page_button">Logout</li>').appendTo(right_target);
     }
     else {
-      $('<li id="nav_login_page_button" id="logout_button">Logout</li>').appendTo(right_target);
+      $('<li id="nav_login_page_button"><a href="login.html">Login</a></li>').appendTo(right_target);
     }
   }
 
@@ -77,7 +77,7 @@
       $('#nav_event_page_button').addClass('active');
     }
 
-    $('#logout_button').click(function() {
+    $('#nav_logout_page_button').click(function() {
       $.ajax({
         type: "POST",
         url: '/logout',
