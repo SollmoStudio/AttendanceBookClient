@@ -12,15 +12,20 @@ $(function(){
       },
       success: function(data) {
         alert('성공' + JSON.stringify(data));
-        location.href = "/attendance.html";
+        location.href = "attendance.html";
       },
       error: function(data) {
         alert('에러' + JSON.stringify(data));
-        location.href = "/index.html";
+        location.href = "index.html";
       },
       dataType: 'json'
     });
 
+    event.preventDefault();
+  });
+
+  $('#login_sign_in_button').click(function() {
+    location.href = "makeAccount.html";
     event.preventDefault();
   });
 })

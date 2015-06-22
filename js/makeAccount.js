@@ -12,11 +12,11 @@ $(function(){
       },
       success: function(data) {
         alert('성공' + JSON.stringify(data));
-        location.href = "/login.html";
+        location.href = "login.html";
       },
       error: function(data) {
         alert('에러' + JSON.stringify(data));
-        location.href = "/makeAccount.html";
+        location.href = "makeAccount.html";
       },
       dataType: 'json'
     });
