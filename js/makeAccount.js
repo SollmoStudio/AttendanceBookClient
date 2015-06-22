@@ -1,6 +1,5 @@
 $(function(){
   $('#make_account_form').submit(function(event) {
-    alert('요청중');
   	var email = $('#make_account_email').val();
   	var password = $('#make_account_password').val();
 
@@ -13,9 +12,11 @@ $(function(){
       },
       success: function(data) {
         alert('성공' + JSON.stringify(data));
+        location.href = "/login.html";
       },
       error: function(data) {
         alert('에러' + JSON.stringify(data));
+        location.href = "/makeAccount.html";
       },
       dataType: 'json'
     });
