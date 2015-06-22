@@ -23,9 +23,22 @@
     type: "POST",
     url: '/isLogin',
     data: {},
-    success: function(data) {
-      var isLogin = data.result[0];
-      successCallback(isLogin);
+    success: function(data1) {
+      var isLogin = data1.result[0];
+        $.ajax({
+          type: "POST",
+          url: '/getEmail',
+          data: {},
+          success: function(data2) {
+            var email = data2.result[0];
+            successCallback(isLogin, email);
+          },
+          error: function(errorData) {
+            alert('서버 에러' + JSON.stringify(errorData));
+            location.href = "error.html";
+          },
+          dataType: 'json'
+        });
     },
     error: function(data) {
       alert('서버 에러' + JSON.stringify(data));
@@ -34,12 +47,12 @@
     dataType: 'json'
   });
 
-  function successCallback(isLogin) {
-    makeHeaderMenu(isLogin);
+  function successCallback(isLogin, email) {
+    makeHeaderMenu(isLogin, email);
     addEvent(isLogin);
   }
 
-  function makeHeaderMenu(isLogin) {
+  function makeHeaderMenu(isLogin, email) {
     if (isLogin) {
       var left_target = $('#navbar_left');
       $('<li id="nav_attendance_page_button"><a href="attendance.html">출근 도장</a></li>' +
@@ -52,6 +65,7 @@
 
     var right_target = $('#navbar_right');
     if (isLogin) {
+      $('<li><a href="#">' + email + '</a></li>').appendTo(right_target);
       $('<li id="nav_logout_page_button"><a href="#">Logout</a></li>').appendTo(right_target);
     }
     else {
