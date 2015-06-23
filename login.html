@@ -8,6 +8,7 @@
     <link href="css/common.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
     <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/moment.js"></script>
 	</head>
 	<body>
 		<div class="container" id="login_container">
@@ -31,15 +32,14 @@
 			</form>
 		</div>
 
+		<!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
     <!--Attach imported header contents -->
     <script type="text/javascript">
       $.get('header.html', function(data) {
         $('body').append(data);
       });
     </script>
-		<!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/moment.js"></script>
-    <script src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
-    <script src="js/login.js"></script>
 	</body>
 </html>
