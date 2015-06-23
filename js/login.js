@@ -10,7 +10,6 @@ $(function(){
         email: email,
         password: password
       },
-      xhrFields: { withCredentials:true },
       success: function(data) {
         alert(JSON.stringify(data));
         if (data.status === "ok") {
