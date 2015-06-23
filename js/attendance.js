@@ -169,14 +169,13 @@ $(function() {
 
   function makeWeekdayColumnQuery(year, month, date) {
     var attendanceRecordDate = getAttendanceRecordDate(year, month, date);
-    var isToday = isToday(year, month, date);
 
-    if (isToday && attendanceRecordDate) {
+    if (isToday(year, month, date) && attendanceRecordDate) {
       $('#attend_button').attr('disabled', 'disabled');
     }
 
     var query = '';
-    if (isToday) {
+    if (isToday(year, month, date)) {
       query += '<td class="attendance_table_today">' + date + makeAttendanceTimeQuery(attendanceRecordDate) + '</td>';
     }
     else {
@@ -192,7 +191,7 @@ $(function() {
     const LIMIT_MINUTE = 30;
 
     if (!attendanceRecordDate)
-      return;
+      return '';
 
     var attenanceQuery;
     var limitTime = attendanceRecordDate.clone();
