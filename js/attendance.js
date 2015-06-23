@@ -14,11 +14,15 @@ $(function() {
       url: '/attend',
       data: {},
       success: function(data) {
-        myAttendInfo = _.map(data.result, function (record) {
-          return moment(record);
-        });
-
-        getMyAttendSuccessCallback();
+        if (data.status === "ok") {
+          myAttendInfo = _.map(data.result, function (record) {
+            return moment(record);
+          });
+          getMyAttendSuccessCallback();
+        } else if (data.status === "NotLogin") {
+          alert('로그인 해주세요~ :)');
+          location.href = "login.html";
+        }
       },
       error: function(data) {
         alert('서버 에러' + JSON.stringify(data));
