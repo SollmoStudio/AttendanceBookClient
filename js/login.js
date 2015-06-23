@@ -18,7 +18,7 @@ $(function(){
         }
       },
       error: function(data) {
-        alert('에러' + JSON.stringify(data));
+        alert('login -> 서버 에러' + JSON.stringify(data));
         location.href = "index.html";
       },
       dataType: 'json'

@@ -22,10 +22,13 @@ $(function() {
         } else if (data.status === "NotLogin") {
           alert('로그인 해주세요~ :)');
           location.href = "login.html";
+        } else {
+          alert('get attend -> 서버 에러' + JSON.stringify(data));
+          location.href = "error.html";
         }
       },
       error: function(data) {
-        alert('서버 에러' + JSON.stringify(data));
+        alert('get attend -> 서버 에러' + JSON.stringify(data));
         location.href = "error.html";
       },
       dataType: 'json'
@@ -58,12 +61,16 @@ $(function() {
             if(data.status === "ok") {
               alert('지각은 마음의 병 출첵 완료!!');
               location.reload();
+            } else if (data.status === "NotLogin") {
+              alert('로그인 해주세요~ :)');
+              location.href = "login.html";
             } else {
-              alert('에러' + JSON.stringify(data));
+              alert('post attend -> 서버 에러' + JSON.stringify(data));
+              location.href = "error.html";
             }
           },
           error: function(data) {
-            alert('서버 에러' + JSON.stringify(data));
+            alert('post attend -> 서버 에러' + JSON.stringify(data));
             location.href = "error.html";
           },
           dataType: 'json'

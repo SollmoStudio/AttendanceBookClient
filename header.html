@@ -34,14 +34,14 @@
             successCallback(isLogin, email);
           },
           error: function(errorData) {
-            alert('서버 에러' + JSON.stringify(errorData));
+            alert('getEmail -> 서버 에러' + JSON.stringify(errorData));
             location.href = "error.html";
           },
           dataType: 'json'
         });
     },
     error: function(data) {
-      alert('서버 에러' + JSON.stringify(data));
+      alert('isLogin -> 서버 에러' + JSON.stringify(data));
       location.href = "error.html";
     },
     dataType: 'json'
@@ -100,7 +100,7 @@
           location.href = "index.html";
         },
         error: function(data) {
-          alert('서버 에러' + JSON.stringify(data));
+          alert('logout -> 서버 에러' + JSON.stringify(data));
           location.href = "error.html";
         },
         dataType: 'json'

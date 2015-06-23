@@ -15,7 +15,7 @@ $(function(){
         location.href = "login.html";
       },
       error: function(data) {
-        alert('에러' + JSON.stringify(data));
+        alert('makeUser -> 서버 에러' + JSON.stringify(data));
         location.href = "makeAccount.html";
       },
       dataType: 'json'
