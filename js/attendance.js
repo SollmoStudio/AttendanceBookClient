@@ -16,7 +16,7 @@ $(function() {
       xhrFields: { withCredentials:true },
       success: function(data) {
         myAttendInfo = _.map(data.result, function (record) {
-          return moment.format(record);
+          return moment().format(record);
         });
 
         getMyAttendSuccessCallback();
