@@ -15,7 +15,7 @@ $(function() {
       data: {},
       success: function(data) {
         myAttendInfo = _.map(data.result, function (record) {
-          return moment().format(record);
+          return moment(record);
         });
 
         getMyAttendSuccessCallback();
