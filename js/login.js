@@ -11,7 +11,7 @@ $(function(){
         password: password
       },
       success: function(data) {
-        console.log(data);
+        alert(JSON.stringify(data));
         if (data.status === "ok") {
           location.href = "attendance.html";
         } else {
