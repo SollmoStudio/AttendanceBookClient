@@ -3,11 +3,36 @@ $(function() {
   const SUNDAY_NUMBER = 0;
   const SATURDAY_NUMBER = 6;
 
+  var myAttendInfo = [];
   var selectedDate = moment();
-
   updateCurrentTime();
-  makeAttendanceCalendar();
-  addEvent();
+  getMyAttend();
+
+  function getMyAttend() {
+    $.ajax({
+      type: "GET",
+      url: '/attend',
+      data: {},
+      xhrFields: { withCredentials:true },
+      success: function(data) {
+        myAttendInfo = _.map(data.result, function (record) {
+          return moment.format(record);
+        });
+
+        getMyAttendSuccessCallback();
+      },
+      error: function(data) {
+        alert('서버 에러' + JSON.stringify(data));
+        location.href = "error.html";
+      },
+      dataType: 'json'
+    });
+  }
+
+  function getMyAttendSuccessCallback() {
+    makeAttendanceCalendar();
+    addEvent();
+  }
 
   function updateCurrentTime()
   {
@@ -25,10 +50,11 @@ $(function() {
           type: "POST",
           url: '/attend',
           data: {},
+          xhrFields: { withCredentials:true },
           success: function(data) {
             if(data.status === "ok") {
               alert('지각은 마음의 병 출첵 완료!!');
-              $('#attend_button').attr('disabled', 'disabled');
+              location.reload();
             } else {
               alert('에러' + JSON.stringify(data));
             }
@@ -61,7 +87,6 @@ $(function() {
   }
 
   function makeAttendanceCalendar() {
-
     removeAllRowsExceptTableFrame();
 
     var calendarTable = $('#attendance_table');
@@ -144,11 +169,17 @@ $(function() {
   }
 
   function makeWeekdayColumnQuery(year, month, date) {
+    var attendanceRecordDate = getAttendanceRecordDate(year, month, date);
     if (isToday(year, month, date)) {
-      return '<td class="attendance_table_today">' + date + '</td>';
+      if (attendanceRecordDate) {
+        $('#attend_button').attr('disabled', 'disabled');
+        var attenanceQuery = '<span class="attendance_table_attend_time">' + attendanceRecordDate.format("hh:mm A") + '</span>';
+        return '<td class="attendance_table_today">' + date + attenanceQuery + '</td>';
+      } else {
+        return '<td class="attendance_table_today">' + date + '</td>';
+      }
     }
-    else if (hasAttendanceRecord(year, month, date)) {
-      var attendanceRecordDate = getAttendanceRecordDate(year, month, date);
+    else if (attendanceRecordDate) {
       var attenanceQuery = '<span class="attendance_table_attend_time">' + attendanceRecordDate.format("hh:mm A") + '</span>';
       return '<td>' + date + attenanceQuery + '</td>';
     }
@@ -157,14 +188,16 @@ $(function() {
     }
   }
 
-  function hasAttendanceRecord (year, month, date) {
-    //TODO : Return valid record from database.
-    return true;
-  }
-
   function getAttendanceRecordDate (year, month, date) {
-    //TODO : Return valid record from database.
-    return moment();
+    var dateToFind = moment(new Date(year, month, date));
+    var filteredData = _.filter(myAttendInfo, function(record) {
+      return record.year === dateToFind.year && record.month === dateToFind.month;
+    });
+
+    if (filteredData.length === 0)
+      return null;
+    else
+      return filteredData[0];
   }
 
   //Sunday
