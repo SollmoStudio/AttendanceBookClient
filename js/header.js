@@ -36,8 +36,7 @@ $(function() {
     if (isLogin) {
       var left_target = $('#navbar_left');
       $('<li id="nav_attendance_page_button"><a href="attendance.html">출근 도장</a></li>' +
-        '<li id="nav_my_page_button"><a href="my.html">내 근태 현황</a></li>' +
-        '<li id="nav_rank_page_button"><a href="rank.html">근태 랭킹</a></li>' +
+        '<li id="nav_my_page_button"><a href="my.html">내 근태 기록</a></li>' +
         '<li id="nav_event_page_button"><a href="event.html">이벤트 추가</a></li>' +
         '<li id="nav_manage_page_button"><a href="manage.html">관리자 페이지</a></li>' +
         '<li id="nav_account_page_button"><a href="account.html">계정관리</a></li>').appendTo(left_target);
