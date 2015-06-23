@@ -13,7 +13,6 @@ $(function() {
       type: "GET",
       url: '/attend',
       data: {},
-      xhrFields: { withCredentials:true },
       success: function(data) {
         myAttendInfo = _.map(data.result, function (record) {
           return moment().format(record);
@@ -191,7 +190,7 @@ $(function() {
   function getAttendanceRecordDate (year, month, date) {
     var dateToFind = moment(new Date(year, month, date));
     var filteredData = _.filter(myAttendInfo, function(record) {
-      return record.year === dateToFind.year && record.month === dateToFind.month;
+      return record.year() === dateToFind.year() && record.month() === dateToFind.month() && record.date() === dateToFind.date();
     });
 
     if (filteredData.length === 0)
