@@ -169,22 +169,40 @@ $(function() {
 
   function makeWeekdayColumnQuery(year, month, date) {
     var attendanceRecordDate = getAttendanceRecordDate(year, month, date);
-    if (isToday(year, month, date)) {
-      if (attendanceRecordDate) {
-        $('#attend_button').attr('disabled', 'disabled');
-        var attenanceQuery = '<span class="attendance_table_attend_time">' + attendanceRecordDate.format("hh:mm A") + '</span>';
-        return '<td class="attendance_table_today">' + date + attenanceQuery + '</td>';
-      } else {
-        return '<td class="attendance_table_today">' + date + '</td>';
-      }
+    var isToday = isToday(year, month, date);
+
+    if (isToday && attendanceRecordDate) {
+      $('#attend_button').attr('disabled', 'disabled');
     }
-    else if (attendanceRecordDate) {
-      var attenanceQuery = '<span class="attendance_table_attend_time">' + attendanceRecordDate.format("hh:mm A") + '</span>';
-      return '<td>' + date + attenanceQuery + '</td>';
+
+    var query = '';
+    if (isToday) {
+      query += '<td class="attendance_table_today">' + date + makeAttendanceTimeQuery(attendanceRecordDate) + '</td>';
     }
     else {
-      return '<td>' + date + '</td>';
+      query += '<td>' + date + makeAttendanceTimeQuery(attendanceRecordDate) + '</td>';
     }
+
+    return query;
+  }
+
+  function makeAttendanceTimeQuery(attendanceRecordDate)
+  {
+    const LIMIT_HOUR = 9;
+    const LIMIT_MINUTE = 30;
+
+    if (!attendanceRecordDate)
+      return;
+
+    var attenanceQuery;
+    var limitTime = attendanceRecordDate.clone();
+    limitTime.hour(LIMIT_HOUR);
+    limitTime.minute(LIMIT_MINUTE);
+
+    if (attendanceRecordDate.diff(limitTime) < 0)
+      return '<span class="attendance_table_attend_time">' + attendanceRecordDate.format("HH:mm:ss") + '</span>';
+    else
+      return '<span class="attendance_table_attend_time attend_late">' + attendanceRecordDate.format("HH:mm:ss") + '</span>';
   }
 
   function getAttendanceRecordDate (year, month, date) {
