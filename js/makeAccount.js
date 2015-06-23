@@ -18,6 +18,7 @@ $(function(){
         alert('에러' + JSON.stringify(data));
         location.href = "makeAccount.html";
       },
+      xhrFields: { withCredentials:true },
       dataType: 'json'
     });
 

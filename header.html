@@ -23,12 +23,14 @@
     type: "POST",
     url: '/isLogin',
     data: {},
+    xhrFields: { withCredentials:true },
     success: function(data1) {
       var isLogin = data1.result[0];
         $.ajax({
           type: "POST",
           url: '/getEmail',
           data: {},
+          xhrFields: { withCredentials:true },
           success: function(data2) {
             var email = data2.result[0];
             successCallback(isLogin, email);
@@ -95,6 +97,7 @@
       $.ajax({
         type: "POST",
         url: '/logout',
+        xhrFields: { withCredentials:true },
         data: {},
         success: function(data) {
           location.href = "index.html";
