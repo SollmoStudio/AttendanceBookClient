@@ -26,7 +26,7 @@ $(function(){
 
   function attachRecordToTable(records) {
     _.each(records, function(record) {
-      var query = '<tr><td>' + record.format('YYYY/MM/DD') + '<td></td>' + record.format('HH:mm:ss') + '</td></tr>';
+      var query = '<tr><td>' + record.format('YYYY/MM/DD') + '</td><td>' + record.format('HH:mm:ss') + '</td></tr>';
       $('#my_table_body').append(query);
     });
   }
