@@ -6,7 +6,7 @@ $(function(){
     url: '/attends',
     success: function(data) {
       if (data.status === "ok") {
-        initializeAttendancePage(records.result);
+        initializeAttendancePage(data.result);
       } else if (data.status === "NotLogin") {
         alert('로그인 해주세요~ :)');
         location.href = "login.html";
@@ -47,7 +47,7 @@ $(function(){
 
       clearRecordTable();
 
-      var userID = this.text();
+      var userID = $(this).text();
       var attendanceTime = _.map(recordsGroupedByUserId.userID, function(record) {
         return record[1];
       });;
