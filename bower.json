@@ -1,0 +1,23 @@
+{
+  "name": "AttendanceBookClient",
+  "version": "0.0.0",
+  "homepage": "https://github.com/SollmoStudio/AttendanceBookClient",
+  "authors": [
+    "Gilyoung Kim <xpdlf1004@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "moment": "~2.10.3",
+    "underscore": "~1.8.3"
+  }
+}
