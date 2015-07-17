@@ -62,8 +62,9 @@ $(function(){
   }
 
   function attachRecordToTable(records) {
-  _.each(records, function(record) {
-    var query = '<tr><td>' + record.format('YYYY/MM/DD') + '</td><td>' + record.format('HH:mm:ss') + '</td></tr>';
-    $('#manage_table_body').append(query);
-  });
+    _.each(records, function(record) {
+      var query = '<tr><td>' + record.format('YYYY/MM/DD') + '</td><td>' + record.format('HH:mm:ss') + '</td></tr>';
+      $('#manage_table_body').append(query);
+    });
+  }
 });
