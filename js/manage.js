@@ -48,8 +48,8 @@ $(function(){
       clearRecordTable();
 
       var userID = $(this).text();
-      var attendanceTime = _.map(recordsGroupedByUserId.userID, function(record) {
-        return record[1];
+      var attendanceTime = _.map(recordsGroupedByUserId[userID], function(record) {
+        return moment(record[1]);
       });;
 
       attachRecordToTable(attendanceTime);
