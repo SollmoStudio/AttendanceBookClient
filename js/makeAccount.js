@@ -2,13 +2,15 @@ $(function(){
   $('#make_account_form').submit(function(event) {
   	var email = $('#make_account_email').val();
   	var password = $('#make_account_password').val();
+    var name = $('#make_account_name').val();
 
     $.ajax({
       type: "POST",
       url: '/makeUser',
       data: {
         email: email,
-        password: password
+        password: password,
+        name: name
       },
       success: function(data) {
         alert('가입 성공');
