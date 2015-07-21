@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Bootstrap core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <!-- Custom css for this page -->
     <link href="css/common.css" rel="stylesheet">
     <link href="css/manage.css" rel="stylesheet">
@@ -11,23 +12,51 @@
 	<body>
     <div class="container" id="manage_container">
       <h1>팀 근태 기록</h1>
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-          팀원 선
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id = "manage_user_list">
-        </ul>
+      <h3>날짜별 검색</h3>
+      <div class="container">
+          <div class="row">
+              <div class='col-sm-6'>
+                  <div class="form-group">
+                      <div class='input-group date' id='datetimepicker1'>
+                          <input type='text' class="form-control" id="date_form" />
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>날짜</th>
+              <th>팀원</th>
               <th>시간</th>
             </tr>
           </thead>
           <tbody id="manage_table_body">
+          </tbody>
+        </table>
+      </div>
+
+      <h3>팀원별 검색</h3>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        팀원 선택
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id = "manage_user_list"></ul>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>팀원</th>
+              <th>시간</th>
+            </tr>
+          </thead>
+          <tbody id="manage_table_body_by_name">
           </tbody>
         </table>
       </div>
@@ -37,12 +66,18 @@
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="js/manage.js"></script>
     <!--Attach imported header contents -->
     <script type="text/javascript">
       $.get('header.html', function(data) {
         $('body').append(data);
       });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datepicker();
+        });
     </script>
 	</body>
 </html>

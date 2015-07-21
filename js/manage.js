@@ -25,7 +25,6 @@ $(function(){
   function initializeAttendancePage(records)
   {
     recordsGroupedByUserId = _.groupBy(records, 0);
-
     setUserListToDropDownButton();
     addEvent();
   }
@@ -34,7 +33,6 @@ $(function(){
   {
     var users = _.keys(recordsGroupedByUserId);
     var dropDownList = $('#manage_user_list');
-
     _.each(users, function(user){
       var query = '<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="drop_down_user">' + user + '</a></li>';
       $(query).appendTo(dropDownList);
@@ -43,16 +41,29 @@ $(function(){
 
   function addEvent()
   {
-    $('.drop_down_user').click(function() {
+    $('#date_form').change(function() {
 
       clearRecordTable();
-
-      var userID = $(this).text();
-      var attendanceTime = _.map(recordsGroupedByUserId[userID], function(record) {
-        return moment(record[1]);
+      var date = $(this).val();
+      var attendanceTime = _.mapObject(recordsGroupedByUserId, function(values, key) {
+        return _.filter(values, function (value) {
+          var recordToMoment = moment(value[1]);
+          var selectedDate = moment(date);
+          return  recordToMoment.year() === selectedDate.year() && recordToMoment.month() === selectedDate.month() && recordToMoment.date() === selectedDate.date();
+        });
       });;
 
       attachRecordToTable(attendanceTime);
+    });
+
+    $('.drop_down_user').click(function() {
+      clearRecordTableByName();
+      var userID = $(this).text();
+      var attendanceTime = _.map(recordsGroupedByUserId[userID], function(record) {
+        return moment(record[1]);
+      });
+
+      attachRecordToTableForName(attendanceTime);
     });
   }
 
@@ -61,10 +72,27 @@ $(function(){
     $('#manage_table_body').empty();
   }
 
+  function clearRecordTableByName()
+  {
+    $('#manage_table_body_by_name').empty();
+  }
+
   function attachRecordToTable(records) {
+    _.mapObject(records, function(values, key) {
+      var query = '<tr><td>' + key + '</td><td>';
+      if (values.length != 0)
+        query += moment(values[0][1]).format('HH:mm:ss');
+      else
+        query += '기록 없음';
+      query += '</td></tr>';
+      $('#manage_table_body').append(query);
+    });
+  }
+
+  function attachRecordToTableForName(records) {
     _.each(records, function(record) {
       var query = '<tr><td>' + record.format('YYYY/MM/DD') + '</td><td>' + record.format('HH:mm:ss') + '</td></tr>';
-      $('#manage_table_body').append(query);
+      $('#manage_table_body_by_name').append(query);
     });
   }
 });
