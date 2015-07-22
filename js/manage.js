@@ -87,9 +87,11 @@ $(function(){
     });
   }
 
+  var weekdays = [ "일", "월", "화", "수", "목", "금", "토" ];
+
   function attachRecordToTableForName(records) {
     _.each(records, function(record) {
-      var query = '<tr><td>' + record.format('YYYY/MM/DD') + '</td><td>' + record.format('HH:mm:ss') + '</td></tr>';
+      var query = '<tr><td>' + record.format('YYYY/MM/DD') + '(' + weekdays[record.day()]+ ')' + '</td><td>' + record.format('HH:mm:ss') + '</td></tr>';
       $('#manage_table_body_by_name').append(query);
     });
   }
